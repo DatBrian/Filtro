@@ -21,17 +21,6 @@
       "team": "apolo",
       "fechaIngreso": "2023-5-8",
       "id": 2
-    },
-    {
-      "nombre": "Dayismar",
-      "edad": "19",
-      "telefono": "",
-      "email": "",
-      "direccion": "",
-      "fechaNacimiento": "",
-      "team": "apolo",
-      "fechaIngreso": "2023-5-8",
-      "id": 3
     }
   ],
   "team": [

@@ -143,6 +143,7 @@ self.addEventListener("message", async (e) => {
         await createCards();
     } else if (message === "antiguos") {
         // await obtenerAntiguos();
+        self.postMessage({ message: "antiguos" })
     } else if (message === "menores") {
         await obtenerMenores();
     }

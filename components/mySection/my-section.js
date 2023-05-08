@@ -1,101 +1,86 @@
-let pathName = new URL(import.meta.url).pathname;
-let name = pathName.split('/').pop().replace(".js", "");
-let urlEndPoint = "http://localhost:3000";
+export default {
+    all() {
+        let urlEndPoint = "http://localhost:3000";
+        let ws = new Worker("components/mySection/wsMySection.js");
+        loadData();
+        let container = document.querySelector(".container");
 
-export default class mySection extends HTMLElement {
-    static async components() {
-        return await (await fetch(pathName.replace(".js", ".html"))).text();
-    }
+        //Declaración de botones
+        let buttonTodos = document.querySelector("#todos");
+        let buttonMenores = document.querySelector("#menores");
+        let buttonAntiguos = document.querySelector("#antiguos");
 
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
-        console.log("Section funcionando");
-    }
+        //Eventos de escucha
 
-    async delete(target) {
-        try {
-            const response = await fetch(`${urlEndPoint}/reclutas/${target}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
-        }
-        catch (err) {
-            console.log(err);
-        }
-
-        eliminarReclutas(target)
-    }
-
-    async filtroAntiguos() {
-        try {
-
-            let ws = new Worker("components/mySection/wsMySection.js");
-            ws.postMessage({ message: "antiguos" });
-
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async filtroMenores(container) {
-        try {
-            let ws = new Worker("components/mySection/wsMySection.js");
-            ws.postMessage({ message: "menores" });
-            ws.onmessage = (e) => {
-                let { message, data } = e.data;
-                if (message === "menores") {
-                    console.log(container);
-                    container.innerHTML = "";
-                    container.insertAdjacentHTML("beforeend", e.data.data)
-                }
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("deleteButton")) {
+                let id = e.target.parentNode.parentNode.dataset.id;
+                deleteU(id);
             }
-        } catch (error) {
-            console.error(error);
-        }
-    }
+        })
 
-    async loadData() {
-        try {
+        buttonTodos.addEventListener("click", (e) => {
+            loadData();
+        })
 
-            let ws = new Worker("components/mySection/wsMySection.js");
-            ws.postMessage({ message: "api" });
-            ws.onmessage = (e) => {
-                let { message, data } = e.data;
-                if (message === "plantilla") {
-                    this.shadowRoot.querySelector(".container").insertAdjacentHTML("beforeend", e.data.data)
-                }
+        buttonMenores.addEventListener("click", (e) => {
+            filtroMenores(container);
+        })
+
+        //Mensajes del worker
+
+        ws.onmessage = (e) => {
+            let { message, data } = e.data;
+            if (message === "plantilla") {
+                container.insertAdjacentHTML("beforeend", e.data.data)
+            } else if (message === "menores") {
+                container.innerHTML = "";
+                container.insertAdjacentHTML("beforeend", e.data.data)
+            } else if (message === "antiguos") {
+                console.log("mensaje recibido")
+                container.innerHTML = "";
             }
-        } catch (error) {
-            console.error(error);
         }
-    }
 
-    connectedCallback() {
-        Promise.resolve(mySection.components()).then(html => {
-            this.shadowRoot.innerHTML = html;
+        //Funciones
+        function loadData() {
+            try {
+                ws.postMessage({ message: "api" });
+            } catch (error) {
+                console.error(error);
+            }
+        }
 
-            //Declaracion de botones
-            this.buttonTodos = this.shadowRoot.querySelector("#todos");
-            this.buttonAntiguos = this.shadowRoot.querySelector("#antiguos");
-            this.buttonMenores = this.shadowRoot.querySelector("#menores");
-            this.buttonReprobaron = this.shadowRoot.querySelector("#reprobaron");
+        async function deleteU(target) {
+            try {
+                const response = await fetch(`${urlEndPoint}/reclutas/${target}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
 
-            //Eventos de escucha
-            this.buttonTodos.addEventListener("click", this.loadData());
+        async function filtroMenores(container) {
+            try {
+                ws.postMessage({ message: "menores" });
+            } catch (error) {
+                console.error(error);
+            }
+        }
 
-            this.shadowRoot.addEventListener("click", (e) => {
+        async function filtroAntiguos() {
+            try {
+                ws.postMessage({ message: "antiguos" });
 
-                if (e.target.classList.contains("deleteButton")) {
-                    let id = e.target.parentNode.parentNode.dataset.id;
-                    this.delete(id);
-                }
-            })
+            } catch (error) {
+                console.error(error);
+            }
+        }
 
-        });
     }
 }
-
-customElements.define(name, mySection);

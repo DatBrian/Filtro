@@ -1,24 +1,37 @@
 {
   "reclutas": [
     {
-      "nombre": "",
-      "edad": "",
-      "telefono": "",
-      "email": "",
-      "direccion": "",
-      "fechaNacimiento": "",
-      "team": "",
-      "id": ""
-    },
-    {
       "nombre": "Brian",
       "edad": "18",
       "telefono": "3118779881",
       "email": "vikard.2005@hotmail.com",
-      "direccion": "Calle 58",
-      "fechaNacimiento": "2005-05-06",
+      "direccion": "",
+      "fechaNacimiento": "",
       "team": "apolo",
-      "id": "xaH5Edl"
+      "fechaIngreso": "2023-5-8",
+      "id": 1
+    },
+    {
+      "nombre": "Angel",
+      "edad": "17",
+      "telefono": "",
+      "email": "",
+      "direccion": "",
+      "fechaNacimiento": "",
+      "team": "apolo",
+      "fechaIngreso": "2023-5-8",
+      "id": 2
+    },
+    {
+      "nombre": "Dayismar",
+      "edad": "19",
+      "telefono": "",
+      "email": "",
+      "direccion": "",
+      "fechaNacimiento": "",
+      "team": "apolo",
+      "fechaIngreso": "2023-5-8",
+      "id": 3
     }
   ],
   "team": [

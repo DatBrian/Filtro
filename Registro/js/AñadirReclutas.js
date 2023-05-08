@@ -16,6 +16,10 @@ export default {
             let direccion = document.querySelector("#direccion").value;
             let fechaNacimiento = document.querySelector("#fechaNacimiento").value;
             let team = document.querySelector("#team").value;
+            const fechaIngreso = new Date();
+            const año = fechaIngreso.getFullYear();
+            const mes = fechaIngreso.getMonth() + 1;
+            const dia = fechaIngreso.getDate();
 
             let data = {
                 nombre,
@@ -24,7 +28,8 @@ export default {
                 email,
                 direccion,
                 fechaNacimiento,
-                team
+                team,
+                fechaIngreso: `${año}-${mes}-${dia}`
             }
 
             // if (validacionCampos(data)) {

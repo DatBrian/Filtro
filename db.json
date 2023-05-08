@@ -1,40 +1,51 @@
 {
-    "reclutas": [
-        {
-            "id": "",
-            "name": "",
-            "telefono": "",
-            "email": "",
-            "direccion": "",
-            "fechaIngreso": "",
-            "idTeam": ""
-        }
-    ],
-    "team": [
-        {
-            "id": "",
-            "nombre": "",
-            "trainer": ""
-        }
-    ],
-    "skill": [
-        {
-            "id": "",
-            "nombre": ""
-        }
-    ],
-    "moduloSkill": [
-        {
-            "id": "",
-            "nombre": "",
-            "idSKill": ""
-        }
-    ],
-    "evaluacion": [
-        {
-            "idRecluta": "",
-            "idModulo": "",
-            "nota": ""
-        }
-    ]
+  "reclutas": [
+    {
+      "nombre": "",
+      "edad": "",
+      "telefono": "",
+      "email": "",
+      "direccion": "",
+      "fechaNacimiento": "",
+      "team": "",
+      "id": ""
+    },
+    {
+      "nombre": "Brian",
+      "edad": "18",
+      "telefono": "3118779881",
+      "email": "vikard.2005@hotmail.com",
+      "direccion": "Calle 58",
+      "fechaNacimiento": "2005-05-06",
+      "team": "apolo",
+      "id": "xaH5Edl"
+    }
+  ],
+  "team": [
+    {
+      "id": "",
+      "nombre": "",
+      "trainer": ""
+    }
+  ],
+  "skill": [
+    {
+      "id": "",
+      "nombre": ""
+    }
+  ],
+  "moduloSkill": [
+    {
+      "id": "",
+      "nombre": "",
+      "idSKill": ""
+    }
+  ],
+  "evaluacion": [
+    {
+      "idRecluta": "",
+      "idModulo": "",
+      "nota": ""
+    }
+  ]
 }

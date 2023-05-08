@@ -1,8 +1,12 @@
 export default {
     all() {
+        let url = "http://localhost:3000/reclutas"
         let form = document.querySelector("#form");
-        form.addEventListener("submit", validacion)
+        form.addEventListener("submit", validacion);
 
+        //Funciones
+
+        //Obtener datos
         function validacion(e) {
             e.preventDefault();
             let nombre = document.querySelector("#nombre").value;
@@ -28,11 +32,29 @@ export default {
             //     return
             // }
 
-            console.log(data);
+            nuevoRecluta(data);
         }
 
+        //Validar que los campos no estén vacios
         function validacionCampos(obj) {
             return !Object.values(obj).every(element => element !== "");
+        }
+
+        //Enviar nuevo recluta a la base de datos
+
+        let nuevoRecluta = async (data) => {
+            try {
+                await fetch(url, {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                });
+                window.location.href = "../../index.html";
+            } catch (error) {
+                console.error(error);
+            }
         }
 
     }

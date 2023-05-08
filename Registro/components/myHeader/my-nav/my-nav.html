@@ -1,0 +1,53 @@
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<style>
+    @font-face {
+        font-family: "StarWars 1";
+        src: url(../../resources/fuentes/star-jedi-font/);
+    }
+
+    @font-face {
+        font-family: "StarWars 2";
+        src: url(../../resources/fuentes/death-star-font/);
+    }
+
+    * {
+        font-family: "StarWars 1", "StarWars 2";
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    nav ul {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+    }
+
+    nav li {
+        margin-right: 20px;
+    }
+
+    nav a {
+        text-decoration: none;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        color: white;
+        transition-duration: .5s;
+    }
+
+    nav a:hover {
+        color: #FFDE06;
+    }
+</style>

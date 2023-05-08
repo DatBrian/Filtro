@@ -1,0 +1,40 @@
+{
+    "reclutas": [
+        {
+            "id": "",
+            "name": "",
+            "telefono": "",
+            "email": "",
+            "direccion": "",
+            "fechaIngreso": "",
+            "idTeam": ""
+        }
+    ],
+    "team": [
+        {
+            "id": "",
+            "nombre": "",
+            "trainer": ""
+        }
+    ],
+    "skill": [
+        {
+            "id": "",
+            "nombre": ""
+        }
+    ],
+    "moduloSkill": [
+        {
+            "id": "",
+            "nombre": "",
+            "idSKill": ""
+        }
+    ],
+    "evaluacion": [
+        {
+            "idRecluta": "",
+            "idModulo": "",
+            "nota": ""
+        }
+    ]
+}

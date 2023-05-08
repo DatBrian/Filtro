@@ -3,3 +3,41 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    background-image: url("../resources/imagenes/fondo.jpg");
+    background-size: cover;
+}
+
+main {
+    display: flex;
+    margin: 0;
+}
+
+#containerForm {
+    margin-top: 5rem;
+    margin-left: 30rem;
+    position: absolute;
+    width: 50%;
+    height: 80%;
+    background-color: white !important;
+    border-radius: 1rem;
+    border: solid 1px yellow;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+}
+
+#form input,
+#form select {
+    margin-inline: 5rem;
+    height: 2rem;
+}
+
+
+#form h1 {
+    text-align: center;
+}

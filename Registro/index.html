@@ -14,10 +14,24 @@
 
 <body>
     <my-header></my-header>
-    <my-nav></my-nav>
     <main>
-        <div class="left"></div>
-        <div class="right"></div>
+        <div id="containerForm">
+            <form id="form">
+                <h1>Añadir Recluta</h1>
+                <input type="text" placeholder="Nombre" id="nombre">
+                <input type="text" placeholder="Edad" id="edad">
+                <input type="number" placeholder="Teléfono" id="telefono">
+                <input type="mail" placeholder="Email" id="email">
+                <input type="text" placeholder="Dirección" id="direccion">
+                <input type="date" placeholder="Fecha de nacimiento" id="fechaNacimiento">
+                <select name="team" id="team">
+                    <option value="apolo">Apolo</option>
+                    <option value="apolo">Artemis</option>
+                    <option value="apolo">Sputnik</option>
+                </select>
+                <button type="submit">Enviar datos</button>
+            </form>
+        </div>
     </main>
 </body>
 

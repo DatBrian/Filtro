@@ -32,6 +32,7 @@ export default {
         ws.onmessage = (e) => {
             let { message, data } = e.data;
             if (message === "plantilla") {
+                container.innerHTML = e.data.data;
                 container.insertAdjacentHTML("beforeend", e.data.data)
             } else if (message === "menores") {
                 container.innerHTML = "";

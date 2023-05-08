@@ -132,6 +132,7 @@ const obtenerMenores = async () => {
             `;
             self.postMessage({ message: "menores", data: plantilla });
         });
+
     } catch (error) {
         console.error(error);
     }

@@ -4,7 +4,7 @@ export default {
         let ws = new Worker("components/mySection/wsMySection.js");
         loadData();
         let container = document.querySelector(".container");
-
+        let title = document.querySelector("#title");
         //Declaración de botones
         let buttonTodos = document.querySelector("#todos");
         let buttonMenores = document.querySelector("#menores");
@@ -20,11 +20,15 @@ export default {
         })
 
         buttonTodos.addEventListener("click", (e) => {
-            loadData();
+            location.reload();
         })
 
         buttonMenores.addEventListener("click", (e) => {
             filtroMenores(container);
+        })
+
+        buttonAntiguos.addEventListener("click", (e) => {
+            filtroAntiguos();
         })
 
         //Mensajes del worker
@@ -32,19 +36,19 @@ export default {
         ws.onmessage = (e) => {
             let { message, data } = e.data;
             if (message === "plantilla") {
-                container.innerHTML = e.data.data;
                 container.insertAdjacentHTML("beforeend", e.data.data)
             } else if (message === "menores") {
+                location.reload();
                 container.innerHTML = "";
-                container.insertAdjacentHTML("beforeend", e.data.data)
+                container.insertAdjacentHTML("beforeend", data)
             } else if (message === "antiguos") {
-                console.log("mensaje recibido")
-                container.innerHTML = "";
+                (data = []) ? (container.innerHTML = "", title.innerHTML = "Not Found")
+                    : container.insertAdjacentHTML("beforeend", e.data.data)
             }
         }
 
         //Funciones
-        function loadData() {
+        async function loadData() {
             try {
                 ws.postMessage({ message: "api" });
             } catch (error) {

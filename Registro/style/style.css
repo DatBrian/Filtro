@@ -23,6 +23,7 @@ main {
     background-color: white !important;
     border-radius: 1rem;
     border: solid 1px yellow;
+    overflow: auto;
 }
 
 #form {

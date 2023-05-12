@@ -1,26 +1,15 @@
 {
   "reclutas": [
     {
-      "nombre": "Brian",
+      "nombre": "Brian Kaleth Melo",
       "edad": "18",
       "telefono": "3118779881",
       "email": "vikard.2005@hotmail.com",
-      "direccion": "",
-      "fechaNacimiento": "",
+      "direccion": "Calle 58",
+      "fechaNacimiento": "2005-05-06",
       "team": "apolo",
-      "fechaIngreso": "2023-5-8",
+      "fechaIngreso": "2023-5-11",
       "id": 1
-    },
-    {
-      "nombre": "Angel",
-      "edad": "17",
-      "telefono": "",
-      "email": "",
-      "direccion": "",
-      "fechaNacimiento": "",
-      "team": "apolo",
-      "fechaIngreso": "2023-5-8",
-      "id": 2
     }
   ],
   "team": [

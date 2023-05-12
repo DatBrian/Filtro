@@ -52,57 +52,58 @@ const createCards = async () => {
     }
 }
 
-// const obtenerAntiguos = async () => {
-//     try {
-//         let reclutas = await obtenerReclutas();
-//         let filtrados = [];
-//         reclutas.forEach((recluta) => {
-//             let fecha = new Date(recluta.fechaIngreso);
-//             let dosMeses = 60 * 60 * 24 * 30 * 2 * 1000;
+const obtenerAntiguos = async () => {
+    try {
+        let reclutas = await obtenerReclutas();
+        let filtrados = [];
+        reclutas.forEach((recluta) => {
+            let fecha = new Date(recluta.fechaIngreso);
+            let dosMeses = 60 * 60 * 24 * 30 * 2 * 1000;
 
-//             if (Date.now() - fecha.getTime() > dosMeses) {
-//                 filtrados.push(recluta);
-//             }
+            if (Date.now() - fecha.getTime() > dosMeses) {
+                filtrados.push(recluta);
+            }
+        });
+        let index = 0;
+        filtrados.forEach((filtrado) => {
+            index++;
+            let plantilla = `
+                <div class="card" data-id="${filtrado.id}">
+                    <div class="title">
+                        <h3>Recluta# ${index}</h3>
+                    </div>
+                    <div class="info">
+                        <h4>Nombre: ${filtrado.nombre}</h4>
+                        <h4>ID: ${filtrado.id}</h4>
+                        <h4>Edad: ${filtrado.edad}</h4>
+                        <h4>Team: ${filtrado.team}</h4>
+                        <h4>Teléfono: ${filtrado.telefono}</h4>
+                        <h4>Email: ${filtrado.email}</h4>
+                        <h4>Dirección: ${filtrado.direccion}</h4>
+                        <h4>Fecha de nacimiento: ${filtrado.fechaNacimiento}</h4>
+                        <h4>Fecha en la que ingresó: ${filtrado.fechaIngreso}</h4>
+                    </div>
+                    <div class="buttons">
+                        <button class="deleteButton">
+                            <img src="resources/imagenes/hombre.png" alt="">
+                        </button>
+                    </div>
+                </div>
+            `;
+            self.postMessage({ message: "antiguos", data: plantilla });
+        });
 
+        // Enviar mensaje incluso si el array está vacío
+        self.postMessage({ message: "antiguos", data: filtrados });
 
-//         });
-//         let index = 0;
-//         filtrados.forEach((filtrado) => {
-//             index++;
-//             let plantilla = `
-//                 <div class="card" data-id="${filtrado.id}">
-//                     <div class="title">
-//                         <h3>Recluta# ${index}</h3>
-//                     </div>
-//                     <div class="info">
-//                         <h4>Nombre: ${filtrado.nombre}</h4>
-//                         <h4>ID: ${filtrado.id}</h4>
-//                         <h4>Edad: ${filtrado.edad}</h4>
-//                         <h4>Team: ${filtrado.team}</h4>
-//                         <h4>Teléfono: ${filtrado.telefono}</h4>
-//                         <h4>Email: ${filtrado.email}</h4>
-//                         <h4>Dirección: ${filtrado.direccion}</h4>
-//                         <h4>Fecha de nacimiento: ${filtrado.fechaNacimiento}</h4>
-//                         <h4>Fecha en la que ingresó: ${filtrado.fechaIngreso}</h4>
-//                     </div>
-//                     <div class="buttons">
-//                         <button class="deleteButton">
-//                             <img src="resources/imagenes/hombre.png" alt="">
-//                         </button>
-//                     </div>
-//                 </div>
-//             `;
-//             self.postMessage({ message: "antiguos", data: plantilla });
-//         })
-//     } catch (error) {
-//         console.error(error);
-//     }
-// };
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 const obtenerMenores = async () => {
     try {
         let reclutas = await obtenerReclutas();
-        console.log(reclutas);
         let filtrados = reclutas.filter(recluta => recluta.edad >= 18);
         let index = 0;
         filtrados.forEach(filtrado => {
@@ -143,8 +144,8 @@ self.addEventListener("message", async (e) => {
     if (message === "api") {
         await createCards();
     } else if (message === "antiguos") {
-        // await obtenerAntiguos();
-        self.postMessage({ message: "antiguos" })
+        await obtenerAntiguos();
+        // self.postMessage({ message: "antiguos" })
     } else if (message === "menores") {
         await obtenerMenores();
     }

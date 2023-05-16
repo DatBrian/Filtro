@@ -104,9 +104,10 @@ const obtenerAntiguos = async () => {
 const obtenerMenores = async () => {
     try {
         let reclutas = await obtenerReclutas();
-        let filtrados = reclutas.filter(recluta => recluta.edad >= 18);
+        let filtrados = reclutas.filter(recluta => recluta.edad < 18);
         let index = 0;
-        filtrados.forEach(filtrado => {
+        (filtrados = []) ? self.postMessage({ message: "menores", data: filtrados })
+        : filtrados.forEach(filtrado => {
             index++;
             let plantilla = `
                 <div class="card" data-id="${filtrado.id}">
@@ -134,9 +135,10 @@ const obtenerMenores = async () => {
             self.postMessage({ message: "menores", data: plantilla });
         });
 
+
     } catch (error) {
-        console.error(error);
-    }
+    console.error(error);
+}
 }
 
 self.addEventListener("message", async (e) => {

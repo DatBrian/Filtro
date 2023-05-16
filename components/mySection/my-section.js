@@ -38,9 +38,9 @@ export default {
             if (message === "plantilla") {
                 container.insertAdjacentHTML("beforeend", e.data.data)
             } else if (message === "menores") {
-                location.reload();
-                container.innerHTML = "";
-                container.insertAdjacentHTML("beforeend", data)
+                console.log(data);
+                (data = []) ? (container.innerHTML = "", title.innerHTML = "Not Found")
+                    : container.insertAdjacentHTML("beforeend", e.data.data)
             } else if (message === "antiguos") {
                 (data = []) ? (container.innerHTML = "", title.innerHTML = "Not Found")
                     : container.insertAdjacentHTML("beforeend", e.data.data)

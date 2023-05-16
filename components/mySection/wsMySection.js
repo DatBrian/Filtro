@@ -1,14 +1,14 @@
 const urlEndPoint = "http://localhost:3000";
 
-const obtenerReclutas = async () => {
+let obtenerReclutas = async () => {
     try {
-        const response = await fetch(`${urlEndPoint}/reclutas`, {
+        let response = await fetch(`${urlEndPoint}/reclutas`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
         });
-        const reclutas = await response.json();
+        let reclutas = await response.json();
         return reclutas;
     }
     catch (err) {
@@ -16,9 +16,9 @@ const obtenerReclutas = async () => {
     }
 }
 
-const createCards = async () => {
+let createCards = async () => {
     try {
-        const reclutas = await obtenerReclutas();
+        let reclutas = await obtenerReclutas();
         let index = 0;
         reclutas.forEach(recluta => {
             index++;
@@ -52,7 +52,7 @@ const createCards = async () => {
     }
 }
 
-const obtenerAntiguos = async () => {
+let obtenerAntiguos = async () => {
     try {
         let reclutas = await obtenerReclutas();
         let filtrados = [];
@@ -101,12 +101,55 @@ const obtenerAntiguos = async () => {
     }
 };
 
-const obtenerMenores = async () => {
+let obtenerMenores = async () => {
     try {
         let reclutas = await obtenerReclutas();
         let filtrados = reclutas.filter(recluta => recluta.edad < 18);
         let index = 0;
         (filtrados = []) ? self.postMessage({ message: "menores", data: filtrados })
+            : filtrados.forEach(filtrado => {
+                index++;
+                let plantilla = `
+                <div class="card" data-id="${filtrado.id}">
+                    <div class="title">
+                        <h3>Recluta# ${index}</h3>
+                    </div>
+                    <div class="info">
+                        <h4>Nombre: ${filtrado.nombre}</h4>
+                        <h4>ID: ${filtrado.id}</h4>
+                        <h4>Edad: ${filtrado.edad}</h4>
+                        <h4>Team: ${filtrado.team}</h4>
+                        <h4>Teléfono: ${filtrado.telefono}</h4>
+                        <h4>Email: ${filtrado.email}</h4>
+                        <h4>Dirección: ${filtrado.direccion}</h4>
+                        <h4>Fecha de nacimiento: ${filtrado.fechaNacimiento}</h4>
+                        <h4>Fecha en la que ingresó: ${filtrado.fechaIngreso}</h4>
+                    </div>
+                    <div class="buttons">
+                        <button class="deleteButton">
+                            <img src="resources/imagenes/hombre.png" alt="">
+                        </button>
+                    </div>
+                </div>
+            `;
+                self.postMessage({ message: "menores", data: plantilla });
+            });
+
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+let obtenerTeams = async (id) => {
+    let reclutas = await obtenerReclutas();
+    let filtrados = [];
+    let index = 0;
+    reclutas.forEach((recluta) => {
+        (recluta.teamId == id) ? filtrados.push(recluta)
+            : undefined;
+    });
+    (filtrados.length === 0) ? self.postMessage({ message: "teams", data: filtrados })
         : filtrados.forEach(filtrado => {
             index++;
             let plantilla = `
@@ -132,17 +175,12 @@ const obtenerMenores = async () => {
                     </div>
                 </div>
             `;
-            self.postMessage({ message: "menores", data: plantilla });
+            self.postMessage({ message: "teams", data: plantilla });
         });
-
-
-    } catch (error) {
-    console.error(error);
-}
 }
 
 self.addEventListener("message", async (e) => {
-    let { message } = e.data;
+    let { message, data } = e.data;
     if (message === "api") {
         await createCards();
     } else if (message === "antiguos") {
@@ -150,5 +188,7 @@ self.addEventListener("message", async (e) => {
         // self.postMessage({ message: "antiguos" })
     } else if (message === "menores") {
         await obtenerMenores();
+    } else if (message === "teams") {
+        await obtenerTeams(data);
     }
 })

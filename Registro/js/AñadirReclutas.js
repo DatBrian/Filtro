@@ -17,11 +17,11 @@ export default {
             let fechaNacimiento = document.querySelector("#fechaNacimiento").value;
             let team = document.querySelector("#team").value;
             let teamId
-            if (team.value === "apolo") {
+            if (team === "apolo") {
                 teamId = 1
-            } else if (team.value === "Artemis") {
+            } else if (team === "Artemis") {
                 teamId = 2
-            } else if (team.value === "Sputnik") {
+            } else if (team === "Sputnik") {
                 teamId = 3
             }
             const fechaIngreso = new Date();

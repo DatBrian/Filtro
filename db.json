@@ -7,9 +7,22 @@
       "email": "vikard.2005@hotmail.com",
       "direccion": "Calle 58",
       "fechaNacimiento": "2005-05-06",
-      "team": "apolo",
-      "fechaIngreso": "2023-5-11",
+      "team": "Sputnik",
+      "teamId": 3,
+      "fechaIngreso": "2023-5-15",
       "id": 1
+    },
+    {
+      "nombre": "Angel David Velasco",
+      "edad": "17",
+      "telefono": "123456789",
+      "email": "angel@gmail.com",
+      "direccion": "giron",
+      "fechaNacimiento": "1111-11-11",
+      "team": "Artemis",
+      "teamId": 2,
+      "fechaIngreso": "2023-5-15",
+      "id": 2
     }
   ],
   "team": [

@@ -106,7 +106,7 @@ let obtenerMenores = async () => {
         let reclutas = await obtenerReclutas();
         let filtrados = reclutas.filter(recluta => recluta.edad < 18);
         let index = 0;
-        (filtrados = []) ? self.postMessage({ message: "menores", data: filtrados })
+        (filtrados.length === 0) ? self.postMessage({ message: "menores", data: filtrados })
             : filtrados.forEach(filtrado => {
                 index++;
                 let plantilla = `

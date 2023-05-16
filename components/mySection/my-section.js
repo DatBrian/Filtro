@@ -47,13 +47,16 @@ export default {
             if (message === "plantilla") {
                 container.insertAdjacentHTML("beforeend", e.data.data)
             } else if (message === "menores") {
-                (data = []) ? (container.innerHTML = "", title.innerHTML = "Not Found")
-                    : container.insertAdjacentHTML("beforeend", e.data.data)
+                (data = []) ? title.innerHTML = "Not Found"
+                    : undefined;
+                container.innerHTML = "";
+                container.insertAdjacentHTML("beforeend", e.data.data);
             } else if (message === "antiguos") {
-                (data = []) ? (container.innerHTML = "", title.innerHTML = "Not Found")
-                    : container.insertAdjacentHTML("beforeend", e.data.data)
+                (data = []) ? title.innerHTML = "Not Found"
+                    : undefined;
+                container.innerHTML = "";
+                container.insertAdjacentHTML("beforeend", e.data.data);
             } else if (message === "teams") {
-                console.log(data);
                 (data = []) ? title.innerHTML = "Not Found"
                     : undefined;
                 container.innerHTML = "";

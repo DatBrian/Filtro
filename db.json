@@ -11,6 +11,18 @@
       "teamId": 3,
       "fechaIngreso": "2023-5-15",
       "id": 1
+    },
+    {
+      "nombre": "Angel David Velasco",
+      "edad": "17",
+      "telefono": "123456789",
+      "email": "angel@gmail.com",
+      "direccion": "giron",
+      "fechaNacimiento": "1111-01-01",
+      "team": "Artemis",
+      "teamId": 2,
+      "fechaIngreso": "2023-5-15",
+      "id": 2
     }
   ],
   "team": [

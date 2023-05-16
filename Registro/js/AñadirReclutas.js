@@ -16,6 +16,14 @@ export default {
             let direccion = document.querySelector("#direccion").value;
             let fechaNacimiento = document.querySelector("#fechaNacimiento").value;
             let team = document.querySelector("#team").value;
+            let teamId
+            if (team.value === "apolo") {
+                teamId = 1
+            } else if (team.value === "Artemis") {
+                teamId = 2
+            } else if (team.value === "Sputnik") {
+                teamId = 3
+            }
             const fechaIngreso = new Date();
             const año = fechaIngreso.getFullYear();
             const mes = fechaIngreso.getMonth() + 1;
@@ -29,6 +37,7 @@ export default {
                 direccion,
                 fechaNacimiento,
                 team,
+                teamId,
                 fechaIngreso: `${año}-${mes}-${dia}`
             }
 

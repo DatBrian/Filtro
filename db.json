@@ -14,9 +14,19 @@
   ],
   "team": [
     {
-      "id": "",
-      "nombre": "",
-      "trainer": ""
+      "id": "1",
+      "nombre": "Apolo",
+      "trainer": "Jolver"
+    },
+    {
+      "id": "2",
+      "nombre": "Artemis",
+      "trainer": "Velmer"
+    },
+    {
+      "id": "3",
+      "nombre": "Sputnik",
+      "trainer": "Miguel"
     }
   ],
   "skill": [
